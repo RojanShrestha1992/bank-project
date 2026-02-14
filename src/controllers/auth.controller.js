@@ -1,5 +1,6 @@
 const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
+const emailService  = require("../services/email.service")
 /**
  *
  * userRegisterController - This controller will handle the user registration process. It will receive the user data from the request body, validate it, and create a new user in the database. If the registration is successful, it will return a success message along with the created user data (excluding the password). If there is an error during registration, it will return an appropriate error message.
@@ -44,6 +45,9 @@ async function userRegisterController(req, res) {
     },
     token: token,
   });
+
+  await emailService.sendRegisterEmail(user.email, user.name)
+
 }
 
 /**
