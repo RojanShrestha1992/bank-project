@@ -50,6 +50,18 @@ async function sendRegisterEmail(userEmail, name){
     await sendEmail(userEmail, subject, text, html);
 }
 
+async function sendTransactionEmail(userEmail, name, amount, fromAccount, toAccount){
+    const subject = "Transaction Alert from Bank Ledger";
+    const text = `Hello ${name},\n\nA transaction of $${amount} has been made from account ${fromAccount} to account ${toAccount}. If you did not authorize this transaction, please contact our support team immediately.\n\nBest regards,\nThe Bank Ledger Team`;
+    const html = `<p>Hello ${name},</p><p>A transaction of $${amount} has been made from account ${fromAccount} to account ${toAccount}. If you did not authorize this transaction, please contact our support team immediately.</p><p>Best regards,<br>The Bank Ledger Team</p>`;
+    await sendEmail(userEmail, subject, text, html);
+}
 
+async function sendTransactionFail(userEmail, name, amount, fromAccount, toAccount){
+    const subject = "Transaction Failed Alert from Bank Ledger";
+    const text = `Hello ${name},\n\nA transaction of $${amount} from account ${fromAccount} to account ${toAccount} has failed. Please check your account balance and try again. If you need assistance, feel free to contact our support team.\n\nBest regards,\nThe Bank Ledger Team`;
+    const html = `<p>Hello ${name},</p><p>A transaction of $${amount} from account ${fromAccount} to account ${toAccount} has failed. Please check your account balance and try again. If you need assistance, feel free to contact our support team.</p><p>Best regards,<br>The Bank Ledger Team</p>`;
+    await sendEmail(userEmail, subject, text, html);
+}
 
-module.exports = { sendRegisterEmail };
+module.exports = { sendRegisterEmail, sendTransactionEmail, sendTransactionFail };

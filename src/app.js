@@ -1,5 +1,6 @@
 const express = require('express')
 const cooikeParser = require('cookie-parser')
+const transactionRoutes = require('./routes/transaction.routes')
 
 /**
  * Routes
@@ -17,6 +18,7 @@ app.use(cooikeParser())
  */
 app.use('/api/auth', authRouter)
 app.use('/api/accounts', accountRouter)
+app.use('/api/transactions', transactionRoutes)
 
 
 module.exports = app
