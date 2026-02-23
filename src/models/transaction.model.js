@@ -14,7 +14,7 @@ const transactionSchema = new mongoose.Schema(
       required: [true, "To account is required for creating a transaction"],
       index: true,
     },
-    statur: {
+    status: {
       type: String,
       enum: {
         values: ["PENDING", "COMPLETED", "FAILED", "REVERSED"],
